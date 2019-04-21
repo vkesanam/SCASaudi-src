@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using LuisBot;
@@ -259,6 +260,20 @@ namespace Microsoft.Bot.Sample.LuisBot
                                     {Environment.NewLine}Customer Name: {customerName},
                                     {Environment.NewLine}Phone Number: {phone},
                                     {Environment.NewLine}Email: {email}");
+
+            await context.PostAsync("One moment please");
+
+            var activity = context.Activity as Activity;
+            if (activity.Type == ActivityTypes.Message)
+            {
+                var connector = new ConnectorClient(new System.Uri(activity.ServiceUrl));
+                var isTyping = activity.CreateReply("Nerdibot is thinking...");
+                isTyping.Type = ActivityTypes.Typing;
+                await connector.Conversations.ReplyToActivityAsync(isTyping);
+
+                // DEMO: I've added this for demonstration purposes, so we have time to see the "Is Typing" integration in the UI. Else the bot is too quick for us :)
+                Thread.Sleep(2500);
+            }
 
             //PromptDialog.Confirm(
             //context: context,
