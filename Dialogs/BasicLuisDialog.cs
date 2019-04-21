@@ -456,6 +456,20 @@ namespace Microsoft.Bot.Sample.LuisBot
 
             await context.PostAsync("Thank you for your membership registration. We will check your details and will get back to you shortly.");
 
+            await context.PostAsync("One moment please");
+
+            var activity = context.Activity as Activity;
+            if (activity.Type == ActivityTypes.Message)
+            {
+                var connector = new ConnectorClient(new System.Uri(activity.ServiceUrl));
+                var isTyping = activity.CreateReply("Nerdibot is thinking...");
+                isTyping.Type = ActivityTypes.Typing;
+                await connector.Conversations.ReplyToActivityAsync(isTyping);
+
+                // DEMO: I've added this for demonstration purposes, so we have time to see the "Is Typing" integration in the UI. Else the bot is too quick for us :)
+                Thread.Sleep(2500);
+            }
+
             //PromptDialog.Confirm(
             //     context: context,
             //     resume: AnythingElseHandler,
