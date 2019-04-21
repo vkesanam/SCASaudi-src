@@ -66,7 +66,7 @@ namespace Microsoft.Bot.Sample.LuisBot
         {
             var userFeedback = await result;
 
-            if (userFeedback.Text.Contains("M"))
+            if (userFeedback.Value.Equals("M"))
             {
                 //context.Call(new FeedbackDialog("qnaURL", "userQuestion"), ResumeAfterFeedback);
                 var feedback = ((Activity)context.Activity).CreateReply("Are you a Contractor?");
@@ -87,7 +87,7 @@ namespace Microsoft.Bot.Sample.LuisBot
 
                 context.Wait(MessageReceivedAsync);
             }
-            else if (userFeedback.Text.Contains("C"))
+            else if (userFeedback.Value.Equals("C"))
             {
                 PromptDialog.Text(
                context: context,
@@ -95,7 +95,7 @@ namespace Microsoft.Bot.Sample.LuisBot
                prompt: "Enter your Contract Number to verify?",
                retry: "Sorry, I don't understand that.");
             }
-            else if (userFeedback.Text.Contains("CS"))
+            else if (userFeedback.Value.Equals("CS"))
             {
                 PromptDialog.Text(
            context: context,
@@ -242,7 +242,7 @@ namespace Microsoft.Bot.Sample.LuisBot
         {
             var userFeedback = await result;
 
-            if (userFeedback.Text.Contains("Con"))
+            if (userFeedback.Value.Equals("Con"))
             {
                 //context.Call(new FeedbackDialog("qnaURL", "userQuestion"), ResumeAfterFeedback);
                 var feedback = ((Activity)context.Activity).CreateReply("Please choose below a category of your organization.");
@@ -263,7 +263,7 @@ namespace Microsoft.Bot.Sample.LuisBot
 
                 context.Wait(ServiceMessageReceivedAsync);
             }
-            else if (userFeedback.Text.Contains("NonCon"))
+            else if (userFeedback.Value.Equals("NonCon"))
             {
                 //context.Call(new FeedbackDialog("qnaURL", "userQuestion"), ResumeAfterFeedback);
                 var feedback = ((Activity)context.Activity).CreateReply("Please choose below a category of your organization.");
@@ -289,7 +289,7 @@ namespace Microsoft.Bot.Sample.LuisBot
         {
             var userFeedback = await result;
 
-            if (userFeedback.Text.Contains("SO"))
+            if (userFeedback.Value.Equals("SO"))
             {
                 PromptDialog.Text(
                 context: context,
@@ -297,7 +297,7 @@ namespace Microsoft.Bot.Sample.LuisBot
                 prompt: "Enter your Commercial Registration Number?",
                 retry: "Sorry, I don't understand that.");
             }
-            else if (userFeedback.Text.Contains("SN"))
+            else if (userFeedback.Value.Equals("SN"))
             {
                 PromptDialog.Text(
            context: context,
@@ -395,13 +395,17 @@ namespace Microsoft.Bot.Sample.LuisBot
         [LuisIntent("Cancel")]
         public async Task CancelIntent(IDialogContext context, LuisResult result)
         {
-            await this.ShowLuisResult(context, result);
+            //await this.ShowLuisResult(context, result);
+            string message = "I'm sorry, currently i am not in a situation to answer your questions.";
+            await context.PostAsync(message);
         }
 
         [LuisIntent("Help")]
         public async Task HelpIntent(IDialogContext context, LuisResult result)
         {
-            await this.ShowLuisResult(context, result);
+            //await this.ShowLuisResult(context, result);
+            string message = "I'm sorry, currently i am not in a situation to answer your questions.";
+            await context.PostAsync(message);
         }
 
         private async Task ShowLuisResult(IDialogContext context, LuisResult result) 

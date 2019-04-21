@@ -169,9 +169,10 @@
   <ItemGroup>
     <Content Include="default.htm" />
     <Content Include="download.jpg" />
+    <Content Include="download.png" />
     <Content Include="Global.asax" />
     <Content Include="live_chat_icon-02.png" />
-    <Content Include="Property.html" />
+    <Content Include="Pro.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
