@@ -52,9 +52,9 @@ namespace Microsoft.Bot.Sample.LuisBot
                     //new CardAction(){ Title = "👍", Type=ActionTypes.PostBack, Value=$"yes-positive-feedback" },
                     //new CardAction(){ Title = "👎", Type=ActionTypes.PostBack, Value=$"no-negative-feedback" }
 
-                     new CardAction(){ Title = "New Membership", Type=ActionTypes.PostBack, Value=$"New Membership" },
-                    new CardAction(){ Title = "Check Membership Details", Type=ActionTypes.PostBack, Value=$"Check Membership Details" },
-                    new CardAction(){ Title = "Customer Support", Type=ActionTypes.PostBack, Value=$"Customer Support" }
+                     new CardAction(){ Title = "New Membership", Type=ActionTypes.PostBack, Value=$"Membership" },
+                    new CardAction(){ Title = "Check Membership Details", Type=ActionTypes.PostBack, Value=$"CheckMembership" },
+                    new CardAction(){ Title = "Customer Support", Type=ActionTypes.PostBack, Value=$"CustomerSupport" }
                 }
             };
 
@@ -66,7 +66,7 @@ namespace Microsoft.Bot.Sample.LuisBot
         {
             var userFeedback = await result;
 
-            if (userFeedback.Text.Contains("New Membership"))
+            if (userFeedback.Text.Contains("Membership"))
             {
                 //context.Call(new FeedbackDialog("qnaURL", "userQuestion"), ResumeAfterFeedback);
                 var feedback = ((Activity)context.Activity).CreateReply("Are you a Contractor?");
@@ -78,8 +78,8 @@ namespace Microsoft.Bot.Sample.LuisBot
                     //new CardAction(){ Title = "👍", Type=ActionTypes.PostBack, Value=$"yes-positive-feedback" },
                     //new CardAction(){ Title = "👎", Type=ActionTypes.PostBack, Value=$"no-negative-feedback" }
 
-                     new CardAction(){ Title = "Yes, I am a Contractor", Type=ActionTypes.PostBack, Value=$"Yes, I am a Contractor" },
-                    new CardAction(){ Title = "No, I am not a Contractor but I am interested in becoming an SCA member", Type=ActionTypes.PostBack, Value=$"No, I am not a Contractor but I am interested in becoming an SCA member" }
+                     new CardAction(){ Title = "Yes, I am a Contractor", Type=ActionTypes.PostBack, Value=$"YesContractor" },
+                    new CardAction(){ Title = "No, I am not a Contractor but I am interested in becoming an SCA member", Type=ActionTypes.PostBack, Value=$"NoContractor" }
                 }
                 };
 
@@ -87,7 +87,7 @@ namespace Microsoft.Bot.Sample.LuisBot
 
                 context.Wait(MessageReceivedAsync);
             }
-            else if (userFeedback.Text.Contains("Check Membership Details"))
+            else if (userFeedback.Text.Contains("CheckMembership"))
             {
                 PromptDialog.Text(
                context: context,
@@ -95,7 +95,7 @@ namespace Microsoft.Bot.Sample.LuisBot
                prompt: "Enter your Contract Number to verify?",
                retry: "Sorry, I don't understand that.");
             }
-            else if (userFeedback.Text.Contains("Customer Support"))
+            else if (userFeedback.Text.Contains("CustomerSupport"))
             {
                 PromptDialog.Text(
            context: context,
@@ -116,9 +116,9 @@ namespace Microsoft.Bot.Sample.LuisBot
                     //new CardAction(){ Title = "👍", Type=ActionTypes.PostBack, Value=$"yes-positive-feedback" },
                     //new CardAction(){ Title = "👎", Type=ActionTypes.PostBack, Value=$"no-negative-feedback" }
 
-                      new CardAction(){ Title = "New Membership", Type=ActionTypes.PostBack, Value=$"New Membership" },
-                    new CardAction(){ Title = "Check Membership Details", Type=ActionTypes.PostBack, Value=$"Check Membership Details" },
-                    new CardAction(){ Title = "Customer Support", Type=ActionTypes.PostBack, Value=$"Customer Support" }
+                      new CardAction(){ Title = "New Membership", Type=ActionTypes.PostBack, Value=$"Membership" },
+                    new CardAction(){ Title = "Check Membership Details", Type=ActionTypes.PostBack, Value=$"CheckMembership" },
+                    new CardAction(){ Title = "Customer Support", Type=ActionTypes.PostBack, Value=$"CustomerSupport" }
                 }
             };
 
@@ -242,7 +242,7 @@ namespace Microsoft.Bot.Sample.LuisBot
         {
             var userFeedback = await result;
 
-            if (userFeedback.Text.Contains("Yes, I am a Contractor"))
+            if (userFeedback.Text.Contains("YesContractor"))
             {
                 //context.Call(new FeedbackDialog("qnaURL", "userQuestion"), ResumeAfterFeedback);
                 var feedback = ((Activity)context.Activity).CreateReply("Please choose below a category of your organization.");
@@ -254,8 +254,8 @@ namespace Microsoft.Bot.Sample.LuisBot
                     //new CardAction(){ Title = "👍", Type=ActionTypes.PostBack, Value=$"yes-positive-feedback" },
                     //new CardAction(){ Title = "👎", Type=ActionTypes.PostBack, Value=$"no-negative-feedback" }
 
-                     new CardAction(){ Title = "Yes, I am a Saudi Organization", Type=ActionTypes.PostBack, Value=$"Yes, I am a Saudi Organization" },
-                    new CardAction(){ Title = "No, I am a foreign or mixed nationality organization", Type=ActionTypes.PostBack, Value=$"No, I am a foreign or mixed nationality organization" }
+                     new CardAction(){ Title = "Yes, I am a Saudi Organization", Type=ActionTypes.PostBack, Value=$"YesOrganization" },
+                    new CardAction(){ Title = "No, I am a foreign or mixed nationality organization", Type=ActionTypes.PostBack, Value=$"Noorganization" }
                 }
                 };
 
@@ -263,7 +263,7 @@ namespace Microsoft.Bot.Sample.LuisBot
 
                 context.Wait(ServiceMessageReceivedAsync);
             }
-            else if (userFeedback.Text.Contains("No, I am not a Contractor but I am interested in becoming an SCA member"))
+            else if (userFeedback.Text.Contains("NoContractor"))
             {
                 //context.Call(new FeedbackDialog("qnaURL", "userQuestion"), ResumeAfterFeedback);
                 var feedback = ((Activity)context.Activity).CreateReply("Please choose below a category of your organization.");
@@ -275,8 +275,8 @@ namespace Microsoft.Bot.Sample.LuisBot
                     //new CardAction(){ Title = "👍", Type=ActionTypes.PostBack, Value=$"yes-positive-feedback" },
                     //new CardAction(){ Title = "👎", Type=ActionTypes.PostBack, Value=$"no-negative-feedback" }
 
-                       new CardAction(){ Title = "Yes, I am a Saudi Organization", Type=ActionTypes.PostBack, Value=$"Yes, I am a Saudi Organization" },
-                    new CardAction(){ Title = "No, I am a foreign or mixed nationality organization", Type=ActionTypes.PostBack, Value=$"No, I am a foreign or mixed nationality organization" }
+                       new CardAction(){ Title = "Yes, I am a Saudi Organization", Type=ActionTypes.PostBack, Value=$"YesOrganization" },
+                    new CardAction(){ Title = "No, I am a foreign or mixed nationality organization", Type=ActionTypes.PostBack, Value=$"Noorganization" }
                 }
                 };
 
@@ -289,7 +289,7 @@ namespace Microsoft.Bot.Sample.LuisBot
         {
             var userFeedback = await result;
 
-            if (userFeedback.Text.Contains("Yes, I am a Saudi Organization"))
+            if (userFeedback.Text.Contains("YesOrganization"))
             {
                 PromptDialog.Text(
                 context: context,
@@ -297,7 +297,7 @@ namespace Microsoft.Bot.Sample.LuisBot
                 prompt: "Enter your Commercial Registration Number?",
                 retry: "Sorry, I don't understand that.");
             }
-            else if (userFeedback.Text.Contains("No, I am a foreign or mixed nationality organization"))
+            else if (userFeedback.Text.Contains("Noorganization"))
             {
                 PromptDialog.Text(
            context: context,
