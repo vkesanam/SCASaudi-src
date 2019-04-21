@@ -64,7 +64,7 @@ namespace LuisBot
                     Case["title"] = complaint;
 
                     Microsoft.Xrm.Sdk.Entity Account = new Microsoft.Xrm.Sdk.Entity("account");
-                    Account["customerName"] = customerName;
+                    Account["name"] = customerName;
                     Account["telephone1"] = phone;
                     Account["emailaddress1"] = email;
                     Guid AccountId = service.Create(Account);
